@@ -1,8 +1,16 @@
-import { Box, Button, Card, CardBody, CardHeader, Flex, Heading, IconButton, Table, TableContainer, Tbody, Td, Th, Thead, Tr } from '@chakra-ui/react'
-import React from 'react'
+import { Box, Button, Card, CardBody, CardHeader, Flex, Heading, IconButton, Table, TableContainer, Tbody, Td, Th, Thead, Tr, useDisclosure } from '@chakra-ui/react'
+import React, { useState } from 'react'
 import { FiEdit, FiPlusCircle } from 'react-icons/fi'
+import { EditSucursalModal } from './EditSucursalModal'
 
 export const ListadoSucursales = ({ sucursales, empresaId }) => {
+    const [sucursal, setSucursal] = useState("")
+    const { isOpen: isPasswordModalOpen, onOpen: onPasswordModalOpen, onClose: onPasswordModalClose } = useDisclosure();
+
+    const editSucursal = (data) => {
+        setSucursal(data)
+        onPasswordModalOpen()
+    }
     return (
         <>
             <Card mt={5}>
@@ -32,7 +40,7 @@ export const ListadoSucursales = ({ sucursales, empresaId }) => {
                                         <Td>{sucursal.codigo}</Td>
                                         <Td>{sucursal.nombre}</Td>
                                         <Td>
-                                            <IconButton mr={3} icon={<FiEdit />} />
+                                            <IconButton onClick={() => editSucursal(sucursal)} mr={3} icon={<FiEdit />} />
                                         </Td>
                                     </Tr>
                                 ))}
@@ -42,7 +50,7 @@ export const ListadoSucursales = ({ sucursales, empresaId }) => {
                 </CardBody>
             </Card>
 
-            
+          <EditSucursalModal sucursal={sucursal} isOpen={isPasswordModalOpen} onClose={onPasswordModalClose}  />  
         </>
     )
 }
