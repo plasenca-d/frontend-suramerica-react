@@ -10,17 +10,24 @@ import {
   Input,
   Button,
   useDisclosure,
+  useToast,
 } from '@chakra-ui/react';
 import instanceWithToken from '../utils/instanceWithToken';
 import Cookies from 'js-cookie'
 
 const PasswordModal = ({ isOpen, onClose, onSubmit, editId = Cookies.get("id") }) => {
   const [password, setPassword] = useState('');
-
+  const toast = useToast()
   const handleSubmit = () => {
 
-    instanceWithToken.patch('users/'+editId, {password}).then((result) => {
-      alert("clave actualizada con exito")
+    instanceWithToken.patch('users/' + editId, { password }).then((result) => {
+      toast({
+        title: 'Exito!',
+        description: 'Contraseña actualizada con exito',
+        status: 'success',
+        duration: 9000,
+        isClosable: true,
+      })
     })
 
     setPassword('');

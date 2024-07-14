@@ -43,6 +43,8 @@ export default function LoginPage() {
             Cookies.set("role", data.user.role)
             Cookies.set("token", data.token)
             Cookies.set("sesion", true)
+            Cookies.set("empresaId", data.user.empresaId)
+            Cookies.set("sucursalId", data.user.sucursalId)
             navigate("/home")
         }).catch((e) => {
             toast({

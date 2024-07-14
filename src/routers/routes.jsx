@@ -6,6 +6,9 @@ import { HomePage } from '../pages/HomePage';
 import { EmpresasList } from '../pages/empresas/EmpresasList';
 import { DetalleEmpresa } from '../pages/empresas/DetalleEmpresa';
 import { PerfilPage } from '../pages/PerfilPage';
+import { SucursalesPage } from '../pages/admin/SucursalesPage';
+import { UsuariosPage } from '../pages/admin/UsuariosPage';
+import { TasasPage } from '../pages/admin/TasasPage';
 
 export const MyRoutes = () => {
   return (
@@ -19,7 +22,10 @@ export const MyRoutes = () => {
             <Route path="home" element={<HomePage />} />
             <Route path="empresas" element={<EmpresasList />} />
             <Route path="empresas/detalle/:empresaId" element={<DetalleEmpresa />} />
-            <Route path="perfil" element={<PerfilPage />} />
+            <Route path="profile" element={<PerfilPage />} />
+            <Route path="admin/sucursales" element={<SucursalesPage />} />
+            <Route path="admin/usuarios" element={<UsuariosPage />} />
+            <Route path="admin/tasas" element={<TasasPage />} />
           </Route>
         </Route>
       </Routes>

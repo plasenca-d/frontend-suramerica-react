@@ -1,45 +1,47 @@
-import { Box, Button, Card, CardBody, CardHeader, Flex, Heading, IconButton, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Table, TableContainer, Tbody, Td, Th, Thead, Tr, useDisclosure, useToast } from '@chakra-ui/react'
-import React, { useState } from 'react'
+import {
+    Box,
+    Button,
+    Card,
+    CardBody,
+    CardHeader,
+    Flex,
+    Heading,
+    IconButton,
+    Table,
+    TableContainer,
+    Tbody,
+    Td,
+    Th,
+    Thead,
+    Tr,
+    useDisclosure,
+    useToast
+} from '@chakra-ui/react';
+import React, { useState } from 'react';
 import { FiEdit, FiKey, FiPlusCircle } from 'react-icons/fi';
-import instanceWithToken from '../utils/instanceWithToken';
 import PasswordModal from './PasswordModal';
+import EditUserModal from './EditUserModal';
 
 export const ListadoUsuarios = ({ users, empresaId }) => {
-    const toast = useToast()
-    // passwordEdit
-    let [password, setPassword] = useState("")
-    let [editId, setEditId] = useState("")
+    const toast = useToast();
+    const [password, setPassword] = useState("");
+    const [editId, setEditId] = useState("");
+    const [userEdit, setUserEdit] = useState(null);
 
-    const { isOpen, onOpen, onClose } = useDisclosure()
+    const { isOpen: isPasswordModalOpen, onOpen: onPasswordModalOpen, onClose: onPasswordModalClose } = useDisclosure();
+    const { isOpen: isEditUserModalOpen, onOpen: onEditUserModalOpen, onClose: onEditUserModalClose } = useDisclosure();
 
     const editPassword = (id) => {
-        setEditId(id)
-        onOpen()
-    }
+        setEditId(id);
+        onPasswordModalOpen();
+    };
 
-    const updatePassword = () => {
-        const payload = { password }
+    const editUser = (user) => {
+        setUserEdit(user);
+        onEditUserModalOpen();
+    };
 
-        if (!password) {
-            toast({
-                title: 'Error.',
-                description: 'La contraseña no puede estar vacia',
-                status: 'error',
-                duration: 9000,
-                isClosable: true,
-            })
-        }
-
-        instanceWithToken.patch('users/' + editId, payload).then((result) => {
-            toast({
-                title: 'Correcto.',
-                description: 'Ya puedes iniciar sesion con tu nueva contraseña',
-                status: 'success',
-                duration: 5000,
-                isClosable: true,
-            })
-        })
-    }
+    const updatePassword = () => { };
 
     return (
         <>
@@ -72,7 +74,7 @@ export const ListadoUsuarios = ({ users, empresaId }) => {
                                         <Td>{user.typeUser}</Td>
                                         <Td>{user.email}</Td>
                                         <Td>
-                                            <IconButton mr={3} icon={<FiEdit />} />
+                                            <IconButton onClick={() => editUser(user)} mr={3} icon={<FiEdit />} />
                                             <IconButton onClick={() => editPassword(user.id)} colorScheme='red' mr={3} icon={<FiKey />} />
                                         </Td>
                                     </Tr>
@@ -83,7 +85,8 @@ export const ListadoUsuarios = ({ users, empresaId }) => {
                 </CardBody>
             </Card>
 
-            <PasswordModal editId={editId} isOpen={isOpen} onClose={onClose} onSubmit={updatePassword} />
+            <PasswordModal editId={editId} isOpen={isPasswordModalOpen} onClose={onPasswordModalClose} onSubmit={updatePassword} />
+            <EditUserModal user={userEdit} isOpen={isEditUserModalOpen} onClose={onEditUserModalClose} />
         </>
-    )
+    );
 }

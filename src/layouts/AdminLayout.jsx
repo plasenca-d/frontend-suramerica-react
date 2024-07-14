@@ -30,7 +30,7 @@ import {
   } from 'react-icons/fi';
   import { Outlet, Link, useNavigate } from 'react-router-dom';
   import Cookies from 'js-cookie';
-  import { FaBuilding } from 'react-icons/fa';
+  import { FaBuilding, FaDollarSign, FaHome, FaUsers } from 'react-icons/fa';
   import PasswordModal from '../components/PasswordModal';
   
   // Define the different LinkItems for each role
@@ -40,10 +40,10 @@ import {
       { name: 'Empresas', icon: FaBuilding, path: '/empresas' },
     ],
     2: [
-      { name: 'Inicio', icon: FiHome, path: '/home' },
-      { name: 'Sucursales', icon: FaBuilding, path: '/sucursales' },
-      { name: 'Tasas', icon: FiHome, path: '/tasas' },
-      { name: 'Usuarios', icon: FiHome, path: '/usuarios' },
+      { name: 'Inicio', icon: FaHome, path: '/home' },
+      { name: 'Sucursales', icon: FaBuilding, path: '/admin/sucursales' },
+      { name: 'Tasas', icon: FaDollarSign, path: '/admin/tasas' },
+      { name: 'Usuarios', icon: FaUsers, path: '/admin/usuarios' },
     ],
     3: [
       { name: 'Inicio', icon: FiHome, path: '/home' },
@@ -174,7 +174,7 @@ import {
                 bg={useColorModeValue('white', 'gray.900')}
                 borderColor={useColorModeValue('gray.200', 'gray.700')}>
                 <MenuItem onClick={() => perfil(navigate)}>Perfil</MenuItem>
-                <MenuItem onClick={onPasswordChange}>Cambiar Clave</MenuItem>
+                {/* <MenuItem onClick={onPasswordChange}>Cºambiar Clave</MenuItem> */}
                 <MenuDivider />
                 <MenuItem onClick={logout}>Cerrar Sesion</MenuItem>
               </MenuList>
@@ -212,7 +212,6 @@ import {
         </Drawer>
         {/* mobilenav */}
         <MobileNav onOpen={onOpen} navigate={navigate} onPasswordChange={onOpen} logout={() => logout(navigate)} />
-        <PasswordModal isOpen={isOpen} onClose={onClose} onSubmit={updatePassword} />
         <Box ml={{ base: 0, md: 60 }} p="4">
           <Outlet />
         </Box>
