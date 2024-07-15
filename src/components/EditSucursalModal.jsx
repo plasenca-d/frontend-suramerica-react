@@ -41,7 +41,7 @@ export const EditSucursalModal = ({ isOpen, onClose, sucursal }) => {
     <Modal isOpen={isOpen} onClose={onClose}>
       <ModalOverlay />
       <ModalContent>
-        <ModalHeader>Actualizar Usuario</ModalHeader>
+        <ModalHeader>Actualizar Sucursal</ModalHeader>
         <ModalCloseButton />
         <ModalBody>
           <Text fontSize='sm'>Codigo</Text>

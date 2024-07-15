@@ -9,6 +9,7 @@ import {
     IconButton,
     Table,
     TableContainer,
+    Tag,
     Tbody,
     Td,
     Th,
@@ -22,7 +23,7 @@ import { FiEdit, FiKey, FiPlusCircle } from 'react-icons/fi';
 import PasswordModal from './PasswordModal';
 import EditUserModal from './EditUserModal';
 
-export const ListadoUsuarios = ({ users, empresaId }) => {
+export const ListadoUsuarios = ({ users, empresaId, getUsuarios }) => {
     const toast = useToast();
     const [password, setPassword] = useState("");
     const [editId, setEditId] = useState("");
@@ -71,7 +72,10 @@ export const ListadoUsuarios = ({ users, empresaId }) => {
                                 {users.map((user, index) => (
                                     <Tr key={index}>
                                         <Td>{user.name}</Td>
-                                        <Td>{user.typeUser}</Td>
+                                        <Td>
+                                            {user.typeUser == 2 && (<Tag colorScheme='red'>Administrador</Tag>)}
+                                            {user.typeUser == 3 && (<Tag colorScheme='blue'>Operario</Tag>)}
+                                        </Td>
                                         <Td>{user.email}</Td>
                                         <Td>
                                             <IconButton onClick={() => editUser(user)} mr={3} icon={<FiEdit />} />
@@ -84,9 +88,9 @@ export const ListadoUsuarios = ({ users, empresaId }) => {
                     </TableContainer>
                 </CardBody>
             </Card>
-
+            
             <PasswordModal editId={editId} isOpen={isPasswordModalOpen} onClose={onPasswordModalClose} onSubmit={updatePassword} />
-            <EditUserModal user={userEdit} isOpen={isEditUserModalOpen} onClose={onEditUserModalClose} />
+            <EditUserModal user={userEdit} isOpen={isEditUserModalOpen} onClose={onEditUserModalClose} getUsuarios={getUsuarios} />
         </>
     );
 }
