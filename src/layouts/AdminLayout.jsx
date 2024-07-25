@@ -30,8 +30,9 @@ import {
   } from 'react-icons/fi';
   import { Outlet, Link, useNavigate } from 'react-router-dom';
   import Cookies from 'js-cookie';
-  import { FaBuilding, FaDollarSign, FaHome, FaUsers } from 'react-icons/fa';
+  import { FaBox, FaBuilding, FaDollarSign, FaHome, FaList, FaUserAlt, FaUsers } from 'react-icons/fa';
   import PasswordModal from '../components/PasswordModal';
+import { FaGear, FaListCheck } from 'react-icons/fa6';
   
   // Define the different LinkItems for each role
   const linkItemsByRole = {
@@ -44,6 +45,11 @@ import {
       { name: 'Sucursales', icon: FaBuilding, path: '/admin/sucursales' },
       { name: 'Tasas', icon: FaDollarSign, path: '/admin/tasas' },
       { name: 'Usuarios', icon: FaUsers, path: '/admin/usuarios' },
+      { name: 'Clientes', icon: FaUserAlt, path: '/clientes' },
+      { name: 'Paquetes', icon: FaBox, path: '/admin/paquetes' },
+      { name: 'Guias', icon: FaList, path: '/guias' },
+      { name: 'Manifiestos', icon: FaListCheck, path: '/manifiestos' },
+      { name: 'Configuracion', icon: FaGear, path: '/admin/empresa/configurar' },
     ],
     3: [
       { name: 'Inicio', icon: FiHome, path: '/home' },
