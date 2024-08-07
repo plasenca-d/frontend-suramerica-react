@@ -37,6 +37,12 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         marginVertical: 2,
     },
+    row2: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginVertical: 2,
+        borderTop: '1px solid black',
+    },
     rowB: {
         flexDirection: 'row',
         justifyContent: 'space-between',
@@ -63,6 +69,12 @@ const styles = StyleSheet.create({
         fontSize: 10,
         borderRight: '1px solid black',
         paddingHorizontal: 3,
+    },
+    tableCell2: {
+        fontSize: 10,
+        borderRight: '1px solid black',
+        paddingHorizontal: 3,
+        paddingBottom: 120
     },
     tableCellLast: {
         fontSize: 10,
@@ -198,18 +210,89 @@ export const EstructuraGuia = ({ guia }) => {
                 <Text style={styles.title}>ANEXO 1</Text>
                 <Text style={styles.subtitle}>DECLARACION JURADA DE VALOR</Text>
                 <Text style={styles.certifico}>Yo {guia.cliente.nombre} {guia.cliente.apellido} de nacionalidad {guia.cliente.nacionalidad} , con documento de identidad N° {guia.cliente.documento},
-                    domiciliado en {guia.cliente.direccion}, en merito a la Ley del Procedimiento Administrativo General Ley N° 27444, declaro el valor FOB estimado de la mercancia,
+                    domiciliado en {guia.cliente.estado} - {guia.cliente.ciudad}, en merito a la Ley del Procedimiento Administrativo General Ley N° 27444, declaro el valor FOB estimado de la mercancia,
                     asi como de los datos siguientes: GUIA {guia.sucursal.codigo}-{guia.id}</Text>
 
+                <View style={styles.table}>
+                    <View style={styles.tableHeader}>
+                        <Text style={[styles.tableCell, { flex: 6 }]}>Descr. y Caract. de la Mercancia</Text>
+                        <Text style={[styles.tableCell, { flex: 2 }]}>Cant</Text>
+                        <Text style={[styles.tableCell, { flex: 2 }]}>V. Unit </Text>
+                        <Text style={[styles.tableCellLast, { flex: 2 }]}>V. FOB</Text>
+                    </View>
+                    {guia.articulos.map((articulo) => (
+                        <View style={styles.row}>
+                            <Text style={[styles.tableCell, { flex: 6 }]}>
+                                {articulo.articulo}
+                            </Text>
+                            <Text style={[styles.tableCellLast, { flex: 2 }]}>{articulo.cantidad}</Text>
+                            <Text style={[styles.tableCellLast, { flex: 2 }]}>{articulo.monto}</Text>
+                            <Text style={[styles.tableCellLast, { flex: 2 }]}>{articulo.cantidad * articulo.monto}</Text>
+                        </View>
+                    ))}
+
+                </View>
 
                 <Text style={styles.certifico}>Declaro bajo juramento que los presentes datos obedecen a la verdad, sometiendome a las sanciones administrativas, civiles y
                     penales que correspondan en caso de falsedad de los mismo</Text>
                 <View style={styles.signatureContainer}>
+                    <Text style={styles.signatureText}>{formattedDate}</Text>
                     <View style={styles.signatureLine} />
                     <Text style={styles.signatureText}>Firma Remitente</Text>
                 </View>
 
                 <Footer guia={guia} />
+            </Page>
+            <Page size={'A4'} style={styles.page}>
+                <Text style={styles.title}>ANEXO 2</Text>
+                <Text style={styles.subtitle}>CARTA ANTIDROGA</Text>
+                <Text style={styles.certifico}>Yo {guia.cliente.nombre} {guia.cliente.apellido} de nacionalidad {guia.cliente.nacionalidad} , manifiesto que la encomienda la cual decido
+                    enviar a traves de la empresa {guia.sucursal.codigo} - {guia.empresa.nombre} bajo numero de guia {guia.sucursal.codigo}-{guia.id} declaro bajo fe de juramento que no
+                    se transporta ningun tipo de sustancia psicotropicas o estupefacientes señaladas en la Ley Organica de Drogas, asumiendo toda
+                    la responsabilidad del contenido de estos efectos, objetos, documentos u otros tipo de producto
+                </Text>
+
+                <View style={styles.table}>
+                    <View style={styles.row2}>
+                        <Text style={[styles.tableCell, { flex: 6 }]}> Nombres </Text>
+                        <Text style={[styles.tableCellLast, { flex: 6 }]}>{guia.cliente.nombre}</Text>
+                    </View>
+                    <View style={styles.row2}>
+                        <Text style={[styles.tableCell, { flex: 6 }]}> Apellidos </Text>
+                        <Text style={[styles.tableCellLast, { flex: 6 }]}>{guia.cliente.apellido}</Text>
+                    </View>
+                    <View style={styles.row2}>
+                        <Text style={[styles.tableCell, { flex: 6 }]}> Numero de Documento de Identidad </Text>
+                        <Text style={[styles.tableCellLast, { flex: 6 }]}>{guia.cliente.documento}</Text>
+                    </View>
+                    <View style={styles.row2}>
+                        <Text style={[styles.tableCell, { flex: 6 }]}> Telefonos </Text>
+                        <Text style={[styles.tableCellLast, { flex: 6 }]}>{guia.cliente.telefono}</Text>
+                    </View>
+                    <View style={styles.row2}>
+                        <Text style={[styles.tableCell, { flex: 6 }]}> Consignatario </Text>
+                        <Text style={[styles.tableCellLast, { flex: 6 }]}>{guia.destinatario.nombre} {guia.destinatario.apellido}</Text>
+                    </View>
+                    <View style={styles.row2}>
+                        <Text style={[styles.tableCell, { flex: 6 }]}> Direccion en Destino </Text>
+                        <Text style={[styles.tableCellLast, { flex: 6 }]}>{guia.destinatario.direccion}</Text>
+                    </View>
+                    <View style={styles.row2}>
+                        <Text style={[styles.tableCell, { flex: 6 }]}> Telefono de Contacto </Text>
+                        <Text style={[styles.tableCellLast, { flex: 6 }]}>{guia.destinatario.telefono}</Text>
+                    </View>
+
+                    <View style={styles.row2}>
+                        <Text style={[styles.tableCell2, { flex: 6 }]}> Huella Derecha  </Text>
+                        <Text style={[styles.tableCellLast, { flex: 6 }]}>Huella Izquierda </Text>
+                    </View>
+                </View>
+
+                <View style={styles.signatureContainer}>
+                    <Text style={styles.signatureText}>{formattedDate}</Text>
+                    <View style={styles.signatureLine} />
+                    <Text style={styles.signatureText}>Firma Remitente</Text>
+                </View>
             </Page>
         </Document>
     );
