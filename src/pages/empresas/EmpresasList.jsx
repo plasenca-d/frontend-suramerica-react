@@ -126,10 +126,10 @@ export const EmpresasList = () => {
         setCorreo(data.correo);
         setTelefono(data.telefono);
         setMoneda(data.moneda);
-        setAereo(data.aereo);
-        setTerrestre(data.terrestre);
-        setMaritimo(data.maritimo);
-        setMonto(data.tasa);
+        setAereo(parseFloat(data.aereo));
+        setTerrestre(parseFloat(data.terrestre));
+        setMaritimo(parseFloat(data.maritimo));
+        setMonto(parseFloat(data.tasa));
 
         onOpen2(); // Correctly open the edit modal
     };
@@ -170,7 +170,7 @@ export const EmpresasList = () => {
                                         <Td>{empresa.representante}</Td>
                                         <Td>
                                             <IconButton onClick={() => edit(empresa)} mr={3} icon={<FiEdit />} />
-                                            <IconButton onClick={() => navigate("/empresas/detalle/"+empresa.id)} colorScheme='blue' icon={<FiEye />} />
+                                            <IconButton onClick={() => navigate("/empresas/detalle/" + empresa.id)} colorScheme='blue' icon={<FiEye />} />
                                         </Td>
                                     </Tr>
                                 ))}

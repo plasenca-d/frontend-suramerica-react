@@ -13,6 +13,12 @@ import { CofigPage } from '../pages/admin/CofigPage';
 import { PaquetesPage } from '../pages/admin/PaquetesPage';
 import { GuiasPage } from '../pages/admin/GuiasPage';
 import { ListaClientes } from '../pages/clientes/ListaClientes';
+import { Ticket } from '../pages/documents/Ticket';
+import { Etiqueta } from '../pages/documents/Etiqueta';
+import { Guia } from '../pages/documents/Guia';
+import { Manifiestos } from '../pages/admin/Manifiestos';
+import { NuevaGuia } from '../pages/guias/NuevaGuia';
+import { PPaises } from '../pages/admin/PPaises';
 
 export const MyRoutes = () => {
   return (
@@ -25,6 +31,7 @@ export const MyRoutes = () => {
           <Route element={<AdminLayout />}>
             <Route path="home" element={<HomePage />} />
             <Route path="empresas" element={<EmpresasList />} />
+            <Route path="paises" element={<PPaises />} />
             <Route path="clientes" element={<ListaClientes />} />
             <Route path="empresas/detalle/:empresaId" element={<DetalleEmpresa />} />
             <Route path="profile" element={<PerfilPage />} />
@@ -35,6 +42,14 @@ export const MyRoutes = () => {
             <Route path="/admin/paquetes" element={<PaquetesPage />} />
             <Route path="/admin/manifiestos" element={<PaquetesPage />} />
             <Route path="/guias" element={<GuiasPage />} />
+            <Route path="/manifiestos" element={<Manifiestos />} />
+            <Route path="/guias/generar" element={<NuevaGuia />} />
+
+
+
+            <Route path="/documents/ticket/:guiaId" element={<Ticket />} />
+            <Route path="/documents/etiqueta/:guiaId" element={<Etiqueta />} />
+            <Route path="/documents/guia/:guiaId" element={<Guia />} />
           </Route>
         </Route>
       </Routes>

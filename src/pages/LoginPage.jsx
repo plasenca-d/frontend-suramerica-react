@@ -14,6 +14,7 @@ import { useState } from 'react'
 import instance from '../utils/instance'
 import Cookies from 'js-cookie'
 import { useNavigate } from 'react-router-dom'
+import logo from '../assets/logo.png';
 
 export default function LoginPage() {
     const navigate = useNavigate()
@@ -44,6 +45,7 @@ export default function LoginPage() {
             Cookies.set("token", data.token)
             Cookies.set("sesion", true)
             Cookies.set("empresaId", data.user.empresaId)
+            Cookies.set("moneda", data.user.moneda)
             Cookies.set("sucursalId", data.user.sucursalId)
             navigate("/home")
         }).catch((e) => {
@@ -73,7 +75,7 @@ export default function LoginPage() {
 
                     </Heading>
                     <Stack direction={'row'} spacing={4} align={'center'}>
-                        <Image src='https://suramericacargo.com/images/logo.png' />
+                        <Image src={logo} />
                     </Stack>
                 </Stack>
                 <Stack
