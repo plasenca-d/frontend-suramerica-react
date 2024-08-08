@@ -2,8 +2,10 @@ import { Box, Button, Card, CardBody, CardHeader, Flex, Heading, IconButton, Tab
 import React, { useState } from 'react'
 import { FiEdit, FiPlusCircle } from 'react-icons/fi'
 import { EditTasaModal } from './EditTasaModal'
+import Cookies from 'js-cookie'
 
 export const ListadoTasas = ({ tasas }) => {
+    const [moneda, setMoneda] = useState(Cookies.get("moneda"))
     const [tasa, setTasa] = useState("")
     const { isOpen: isPasswordModalOpen, onOpen: onPasswordModalOpen, onClose: onPasswordModalClose } = useDisclosure();
 
@@ -41,7 +43,7 @@ export const ListadoTasas = ({ tasas }) => {
                                     <Tr key={index}>
                                         <Td>{tasa.tasa}</Td>
                                         <Td>{tasa.tipoPrecio}</Td>
-                                        <Td>{tasa.monto} {tasa.divisa}</Td>
+                                        <Td>{tasa.monto} {moneda}</Td>
                                         <Td>
                                             <IconButton onClick={() => editarTasa(tasa)} mr={3} icon={<FiEdit />} />
                                         </Td>

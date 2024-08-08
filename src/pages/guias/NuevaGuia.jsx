@@ -127,7 +127,7 @@ export const NuevaGuia = () => {
       cliente: client,
       destinatario,
       tasa,
-      courier,
+      courier: courier ? courier : null,
       user: Cookies.get("id"),
       empresa: Cookies.get("empresaId"),
       sucursal: Cookies.get("sucursalId"),

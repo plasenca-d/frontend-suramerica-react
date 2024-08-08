@@ -29,7 +29,7 @@ export const ListadoManifiestos = ({ manifiestos = [] }) => {
 
                         <Flex flex='1' gap='4' alignItems='center' flexWrap='wrap'>
                             <Input value={search} w={'50%'} placeholder='Buscar Por Id de Manifiesto' onChange={(event) => setSearch(event.target.value)} />
-                            {Cookies.get("role") == 3 || Cookies.get("role") == 2 && <Button leftIcon={<FiPlusCircle />} colorScheme='red'>Agregar Manifiesto</Button>}
+                            <Button leftIcon={<FiPlusCircle />} colorScheme='red'>Agregar Manifiesto</Button>
                         </Flex>
 
                     </Flex>
