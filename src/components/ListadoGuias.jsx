@@ -1,13 +1,29 @@
-import { Box, Button, Card, CardBody, CardHeader, Flex, Heading, IconButton, Input, Table, TableContainer, Tbody, Td, Th, Thead, Tr } from '@chakra-ui/react'
+import { Box, Button, Card, CardBody, CardHeader, Flex, Heading, IconButton, Input, Table, TableContainer, Tbody, Td, Text, Th, Thead, Tr, useDisclosure, useToast } from '@chakra-ui/react'
 import React, { useState } from 'react'
 import { FiPlusCircle } from 'react-icons/fi'
 import Cookies from 'js-cookie'
-import { FaFileContract, FaReceipt, FaTag } from 'react-icons/fa'
+import { FaFileContract, FaReceipt, FaTag, FaTrash } from 'react-icons/fa'
 import { useNavigate } from 'react-router-dom'
+import instanceWithToken from '../utils/instanceWithToken'
 
-export const ListadoGuias = ({ guias }) => {
+import {
+    AlertDialog,
+    AlertDialogBody,
+    AlertDialogFooter,
+    AlertDialogHeader,
+    AlertDialogContent,
+    AlertDialogOverlay,
+    AlertDialogCloseButton,
+} from '@chakra-ui/react'
+
+export const ListadoGuias = ({ guias, updateGuias }) => {
+    const toast = useToast()
     let [search, setSearch] = useState("")
+    const { isOpen, onOpen, onClose } = useDisclosure()
+    const cancelRef = React.useRef()
     let [currentPage, setCurrentPage] = useState(1)
+    let [deleteId, setDeleteId] = useState("")
+    let [referenceDelete, setReference] = useState("")
     const itemsPerPage = 20
     const navigate = useNavigate()
 
@@ -32,6 +48,26 @@ export const ListadoGuias = ({ guias }) => {
 
     const guia = (id) => {
         navigate("/documents/guia/" + id)
+    }
+
+    const eliminar = (referencia, id) => {
+        setReference(referencia + '-' + id)
+        setDeleteId(id)
+        onOpen()
+    }
+
+    const eliminarP = () => {
+        instanceWithToken.delete('guias/' + deleteId).then((result) => {
+            toast({
+                title: 'Eliminada.',
+                description: "La guia ha sido eliminada con exito!",
+                status: 'success',
+                duration: 9000,
+                isClosable: true,
+            })
+            onClose()
+            updateGuias()
+        })
     }
 
     return (
@@ -73,6 +109,7 @@ export const ListadoGuias = ({ guias }) => {
                                             <IconButton onClick={() => ticket(paquete.id)} colorScheme='blue' mr={3} icon={<FaReceipt />} />
                                             <IconButton onClick={() => guia(paquete.id)} colorScheme='teal' mr={3} icon={<FaFileContract />} />
                                             <IconButton onClick={() => etiqueta(paquete.id)} colorScheme='green' mr={3} icon={<FaTag />} />
+                                            {(!paquete.manifiesto && Cookies.get("role") != 3) && <IconButton onClick={() => eliminar(paquete.sucursal.codigo, paquete.id)} colorScheme='red' mr={3} icon={<FaTrash />} />}
                                         </Td>
                                     </Tr>
                                 ))}
@@ -98,6 +135,35 @@ export const ListadoGuias = ({ guias }) => {
                     </Flex>
                 </CardBody>
             </Card>
+
+
+            <AlertDialog
+                isOpen={isOpen}
+                leastDestructiveRef={cancelRef}
+                onClose={onClose}
+            >
+                <AlertDialogOverlay>
+                    <AlertDialogContent>
+                        <AlertDialogHeader fontSize='lg' fontWeight='bold'>
+                            Eliminar Guia
+                        </AlertDialogHeader>
+
+                        <AlertDialogBody>
+                            Desea usted realmente eliminar la guia {referenceDelete}?
+                            <Text color={'red'}>**Recuerda esta accion no tiene reversion</Text>
+                        </AlertDialogBody>
+
+                        <AlertDialogFooter>
+                            <Button ref={cancelRef} onClick={onClose}>
+                                Cancelar
+                            </Button>
+                            <Button colorScheme='red' onClick={eliminarP} ml={3}>
+                                Eliminar
+                            </Button>
+                        </AlertDialogFooter>
+                    </AlertDialogContent>
+                </AlertDialogOverlay>
+            </AlertDialog>
         </>
     )
 }

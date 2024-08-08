@@ -16,6 +16,6 @@ export const GuiasPage = () => {
   }, [])
 
   return (
-    <ListadoGuias guias={guias} />
+    <ListadoGuias guias={guias} updateGuias={getGuias} />
   )
 }
