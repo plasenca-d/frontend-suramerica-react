@@ -39,11 +39,11 @@ export const ListadoCargas = ({ cargas, onUpdate }) => {
     }
 
     const excelZoom = (id, tipo) => {
-        instanceWithToken.get(`cargas/excel/${id}?tipo=${tipo}`, {
+        instanceWithToken.get(`cargas/excel-zoom/${id}?tipo=${tipo}`, {
             responseType: 'blob' // Important to get the response as a blob
         }).then(response => {
             const blob = new Blob([response.data], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
-            saveAs(blob, `Carga-${id}.xlsx`); // Download the file
+            saveAs(blob, `Carga-${tipo}-${id}.xlsx`); // Download the file
         }).catch(error => {
             console.error('Error downloading the file:', error);
         });
