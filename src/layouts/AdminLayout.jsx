@@ -43,6 +43,7 @@ const linkItemsByRole = {
     { name: 'Inicio', icon: FaHome, path: '/home' },
     { name: 'Empresas', icon: FaBuilding, path: '/empresas' },
     { name: 'Paises', icon: FaGlobe, path: '/paises' },
+    { name: 'Cargas', icon: FaBox, path: '/cargas' },
   ],
   2: [
     { name: 'Inicio', icon: FaHome, path: '/home' },
