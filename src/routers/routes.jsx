@@ -19,6 +19,8 @@ import { Guia } from '../pages/documents/Guia';
 import { Manifiestos } from '../pages/admin/Manifiestos';
 import { NuevaGuia } from '../pages/guias/NuevaGuia';
 import { PPaises } from '../pages/admin/PPaises';
+import { PCrearManifiesto } from '../pages/manifiestos/PCrearManifiesto';
+import { ManifiestoPdf } from '../pages/documents/ManifiestoPdf';
 
 export const MyRoutes = () => {
   return (
@@ -44,12 +46,14 @@ export const MyRoutes = () => {
             <Route path="/guias" element={<GuiasPage />} />
             <Route path="/manifiestos" element={<Manifiestos />} />
             <Route path="/guias/generar" element={<NuevaGuia />} />
+            <Route path="/manifiestos/generar" element={<PCrearManifiesto />} />
 
 
 
             <Route path="/documents/ticket/:guiaId" element={<Ticket />} />
             <Route path="/documents/etiqueta/:guiaId" element={<Etiqueta />} />
             <Route path="/documents/guia/:guiaId" element={<Guia />} />
+            <Route path="/documents/manifiestos/pdf/:manifiestoId" element={<ManifiestoPdf />} />
           </Route>
         </Route>
       </Routes>

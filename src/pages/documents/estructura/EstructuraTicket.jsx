@@ -119,7 +119,7 @@ export const EstructuraTicket = ({ guia }) => {
             <Text style={styles.rightText}>{guia.destinatario.telefono}</Text>
           </View>
         </View>
-        {!guia.entregaPP &&
+        {guia.entregaPP &&
           <>
             <View style={[styles.section, styles.bgGray]}>
               <Text style={styles.title}>ENTREGA PUERTA A PUERTA</Text>
@@ -135,20 +135,20 @@ export const EstructuraTicket = ({ guia }) => {
               </View>
               <View style={styles.row}>
                 <Text style={styles.leftText}>Estado</Text>
-                <Text style={styles.rightText}>{guia.destinatario.estado}</Text>
+                <Text style={styles.rightText}>{guia.destinatario ? guia.destinatario.estado : null}</Text>
               </View>
               <View style={styles.row}>
                 <Text style={styles.leftText}>Ciudad</Text>
-                <Text style={styles.rightText}>{guia.destinatario.ciudad}</Text>
+                <Text style={styles.rightText}>{guia.destinatario ? guia.destinatario.ciudad : null}</Text>
               </View>
               <View style={styles.row}>
                 <Text style={styles.leftText}>Direccion</Text>
-                <Text style={styles.rightText}>{guia.destinatario.direccion}</Text>
+                <Text style={styles.rightText}>{guia.destinatario ? guia.destinatario.direccion : null}</Text>
               </View>
             </View>
           </>
         }
-        {guia.entregaPP &&
+        {!guia.entregaPP &&
           <>
             <View style={[styles.section, styles.bgGray]}>
               <Text style={styles.title}>RECOJO EN COURIER</Text>
@@ -164,23 +164,23 @@ export const EstructuraTicket = ({ guia }) => {
               </View>
               <View style={styles.row}>
                 <Text style={styles.leftText}>Estado</Text>
-                <Text style={styles.rightText}>{guia.courier.estado}</Text>
+                <Text style={styles.rightText}>{guia.courier ? guia.courier.estado : null}</Text>
               </View>
               <View style={styles.row}>
                 <Text style={styles.leftText}>Ciudad</Text>
-                <Text style={styles.rightText}>{guia.courier.ciudad}</Text>
+                <Text style={styles.rightText}>{guia.courier ? guia.courier.ciudad : null}</Text>
               </View>
               <View style={styles.col}>
                 <Text style={styles.leftText}>Direccion</Text>
-                <Text style={styles.rightText}>{guia.courier.direccion}</Text>
+                <Text style={styles.rightText}>{guia.courier ? guia.courier.direccion : null}</Text>
               </View>
               <View style={styles.row}>
                 <Text style={styles.leftText}>Codigo</Text>
-                <Text style={styles.rightText}>{guia.courier.CodOficina}</Text>
+                <Text style={styles.rightText}>{guia.courier ? guia.courier.CodOficina : null}</Text>
               </View>
               <View style={styles.col}>
                 <Text style={styles.leftText}>Nombre</Text>
-                <Text style={styles.rightText}>{guia.courier.nombre}</Text>
+                <Text style={styles.rightText}>{guia.courier ? guia.courier.nombre : null}</Text>
               </View>
             </View>
           </>

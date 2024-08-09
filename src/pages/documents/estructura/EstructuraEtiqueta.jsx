@@ -1,13 +1,15 @@
 import React from 'react'
 import { Document, Page, Text, View, StyleSheet, Font } from '@react-pdf/renderer';
 import { format } from 'date-fns';
+import Barcode from 'react-barcode';
+
 
 const styles = StyleSheet.create({
     page: {
-      flexDirection: 'column',
-      backgroundColor: 'white',
-      paddingHorizontal: 10,
-      paddingVertical: 10
+        flexDirection: 'column',
+        backgroundColor: 'white',
+        paddingHorizontal: 10,
+        paddingVertical: 10
     },
     title: {
         fontSize: 15,
@@ -33,7 +35,7 @@ const styles = StyleSheet.create({
     detailLine: {
         fontSize: 13
     }
-  });
+});
 
 export const EstructuraEtiqueta = ({ guia }) => {
     return (
@@ -45,16 +47,19 @@ export const EstructuraEtiqueta = ({ guia }) => {
                 <Text style={styles.subtitle}>Telefono: {guia.sucursal.telefono}</Text>
                 <Text style={styles.tracking}>{guia.sucursal.codigo}-{guia.id}</Text>
                 <View style={styles.detail}>
-                    <Text style={styles.detailLine}>Destinatario: {guia.destinatario.nombre} {guia.destinatario.apellido}</Text> 
+                    <Text style={styles.detailLine}>Destinatario: {guia.destinatario.nombre} {guia.destinatario.apellido}</Text>
                 </View>
                 <View style={styles.detail}>
-                    <Text style={styles.detailLine}>Pais: {guia.paisDestino}</Text> 
+                    <Text style={styles.detailLine}>Pais: {guia.paisDestino}</Text>
                 </View>
                 <View style={styles.detail}>
-                    <Text style={styles.detailLine}>Peso: {guia.peso}</Text> 
+                    <Text style={styles.detailLine}>Peso: {guia.peso}</Text>
                 </View>
                 <View style={styles.detail}>
-                    <Text style={styles.detailLine}>Tipo de Envio: {guia.tipoGuia}</Text> 
+                    <Text style={styles.detailLine}>Tipo de Envio: {guia.tipoGuia}</Text>
+                </View>
+                <View>
+                <Text style={styles.detailLine}><Barcode value={guia.id} /></Text>
                 </View>
             </Page>
         </Document>
