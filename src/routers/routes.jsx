@@ -22,6 +22,8 @@ import { PPaises } from '../pages/admin/PPaises';
 import { PCrearManifiesto } from '../pages/manifiestos/PCrearManifiesto';
 import { ManifiestoPdf } from '../pages/documents/ManifiestoPdf';
 import { PCargas } from '../pages/admin/PCargas';
+import { PEditCarga } from '../pages/cargas/PEditCarga';
+import { PCrearCarga } from '../pages/cargas/PCrearCarga';
 
 export const MyRoutes = () => {
   return (
@@ -47,6 +49,8 @@ export const MyRoutes = () => {
             <Route path="/guias" element={<GuiasPage />} />
             <Route path="/manifiestos" element={<Manifiestos />} />
             <Route path="/cargas" element={<PCargas />} />
+            <Route path="/cargas/editar/:cargaId" element={<PEditCarga />} />
+            <Route path="/cargas/crear" element={<PCrearCarga />} />
             <Route path="/guias/generar" element={<NuevaGuia />} />
             <Route path="/manifiestos/generar" element={<PCrearManifiesto />} />
 

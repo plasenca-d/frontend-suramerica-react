@@ -94,6 +94,7 @@ export const ListadoGuias = ({ guias, updateGuias }) => {
                             <Thead>
                                 <Tr>
                                     <Th>Guia</Th>
+                                    <Th>Id Zoom</Th>
                                     <Th>Cliente</Th>
                                     <Th>Destinatario</Th>
                                     <Th></Th>
@@ -103,6 +104,7 @@ export const ListadoGuias = ({ guias, updateGuias }) => {
                                 {paginatedGuias.map((paquete, index) => (
                                     <Tr key={index}>
                                         <Td>{paquete.id}</Td>
+                                        <Td>{paquete.guiaZoom}</Td>
                                         <Td>{paquete.cliente.nombre} {paquete.cliente.apellido}</Td>
                                         <Td>{paquete.destinatario.nombre} {paquete.destinatario.apellido}</Td>
                                         <Td>

@@ -1,7 +1,7 @@
 import { Badge, Box, Button, Card, CardBody, CardHeader, Flex, Heading, IconButton, Input, Table, TableContainer, Tbody, Td, Th, Thead, Tr } from '@chakra-ui/react'
 import { format } from 'date-fns'
 import React, { useState } from 'react'
-import { FaDollarSign, FaEye, FaFileExcel, FaFilePdf, FaTrash } from 'react-icons/fa'
+import { FaDollarSign, FaEye, FaFileExcel, FaFilePdf, FaRegEdit, FaTrash } from 'react-icons/fa'
 import { FiPlusCircle } from 'react-icons/fi'
 import { useNavigate } from 'react-router-dom'
 import Cookies from 'js-cookie'
@@ -49,6 +49,10 @@ export const ListadoCargas = ({ cargas, onUpdate }) => {
         });
     }
 
+    const edit = (id) => {
+        navigate("/cargas/editar/" + id)
+    }
+
     return (
         <>
             <Card mt={5}>
@@ -91,11 +95,12 @@ export const ListadoCargas = ({ cargas, onUpdate }) => {
                                         <Td textAlign={'center'}>{manifiesto.guias.length}</Td>
                                         <Td textAlign={'center'}>{format(new Date(manifiesto.createdAt), 'dd-MM-yyyy')}</Td>
                                         <Td>
-                                            <IconButton onClick={() => pdf(manifiesto.id)} colorScheme='blue' mr={3} icon={<FaEye />} />
+                                            
                                             <IconButton onClick={() => excel(manifiesto.id, 'full')} colorScheme='green' mr={3} icon={<FaFileExcel />} />
                                             <IconButton onClick={() => excelZoom(manifiesto.id, 'my3')} colorScheme='teal' mr={3} icon={<FaCircleUp />} />
                                             <IconButton onClick={() => excelZoom(manifiesto.id, 'mn3')} colorScheme='orange' mr={3} icon={<FaCircleDown />} />
                                             <IconButton onClick={() => pdf(manifiesto.id)} colorScheme='yellow' mr={3} icon={<FaDollarSign />} />
+                                            {manifiesto.estado === 'CREACION' && <IconButton onClick={() => edit(manifiesto.id)} colorScheme='blue' mr={3} icon={<FaRegEdit />} />}
                                             {(!manifiesto.carga && Cookies.get("role") != 3) && <IconButton onClick={() => eliminar(manifiesto.id)} colorScheme='red' mr={3} icon={<FaTrash />} />}
                                         </Td>
                                     </Tr>
