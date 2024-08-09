@@ -5,7 +5,8 @@ import { useNavigate } from 'react-router-dom'
 import { format } from 'date-fns'
 import { FaFilePdf, FaTrash } from 'react-icons/fa'
 import Cookies from 'js-cookie'
-export const ListadoManifiestos = ({ manifiestos }) => {
+import instanceWithToken from '../utils/instanceWithToken'
+export const ListadoManifiestos = ({ manifiestos, updateMan }) => {
     let [search, setSearch] = useState("")
     let [currentPage, setCurrentPage] = useState(1)
     const itemsPerPage = 10
@@ -30,7 +31,11 @@ export const ListadoManifiestos = ({ manifiestos }) => {
         navigate("/documents/manifiestos/pdf/" + id)
     }
 
-    const eliminar = () => { }
+    const eliminar = (id) => {
+        instanceWithToken.delete('manifiestos/'+id).then((result) => {
+            updateMan()
+        })
+     }
     return (
         <>
             <Card mt={5}>

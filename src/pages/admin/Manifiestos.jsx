@@ -16,6 +16,6 @@ export const Manifiestos = () => {
         getManifiestos()
     }, [])
     return (
-        <ListadoManifiestos manifiestos={manifiestos} />
+        <ListadoManifiestos manifiestos={manifiestos} updateMan={getManifiestos} />
     )
 }

@@ -53,6 +53,21 @@ const styles = StyleSheet.create({
         fontSize: 10,
         paddingHorizontal: 3,
     },
+    signatureContainer: {
+        marginTop: 20,
+        alignItems: 'center',
+    },
+    signatureLine: {
+        borderBottom: '1px solid black',
+        width: '30%',
+        marginBottom: 5,
+        marginTop: 40,
+    },
+    signatureText: {
+        fontSize: 10,
+        fontFamily: 'Cabin',
+        fontWeight: 'bold',
+    },
 });
 
 export const EstructuraManifiesto = ({ manifiesto }) => {
@@ -108,7 +123,21 @@ export const EstructuraManifiesto = ({ manifiesto }) => {
                             <Text style={[styles.tableCell, { width: '10%' }]}>{calcularFOB(guia.articulos)} USD </Text>
                         </View>
                     ))}
+                </View>
 
+                <View style={styles.row} mt={2}>
+                    <View style={styles.signatureContainer}>
+                        <View style={styles.signatureLine} />
+                        <Text style={styles.signatureText}>Firma Remitente</Text>
+                    </View>
+                    <View style={styles.signatureContainer}>
+                        <View style={styles.signatureLine} />
+                        <Text style={styles.signatureText}>Firma Remitente</Text>
+                    </View>
+                    <View style={styles.signatureContainer}>
+                        <View style={styles.signatureLine} />
+                        <Text style={styles.signatureText}>Firma Remitente</Text>
+                    </View>
                 </View>
             </Page>
         </Document>
