@@ -70,6 +70,10 @@ export const ListadoGuias = ({ guias, updateGuias }) => {
         })
     }
 
+    const neww = () => {
+        navigate("/guias/generar")
+    }
+
     return (
         <>
             <Card mt={5}>
