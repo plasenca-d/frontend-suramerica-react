@@ -110,8 +110,8 @@ export const EstructuraManifiesto = ({ manifiesto }) => {
                         <Text style={[styles.tableCell, { width: '10%' }]}>GUIA</Text>
                         <Text style={[styles.tableCell, { width: '30%' }]}>DESTINATARIO</Text>
                         <Text style={[styles.tableCell, { width: '10%' }]}>DOC</Text>
-                        <Text style={[styles.tableCell, { width: '5%' }]}>KG</Text>
-                        <Text style={[styles.tableCell, { width: '10%' }]}>VOL</Text>
+                        <Text style={[styles.tableCell, { width: '7%' }]}>KG</Text>
+                        <Text style={[styles.tableCell, { width: '8%' }]}>VOL</Text>
                         <Text style={[styles.tableCell, { width: '10%' }]}>M3</Text>
                         <Text style={[styles.tableCell, { width: '10%' }]}>FT3</Text>
                         <Text style={[styles.tableCell, { width: '10%' }]}>FOB</Text>
@@ -122,8 +122,8 @@ export const EstructuraManifiesto = ({ manifiesto }) => {
                             <Text style={[styles.tableCell, { width: '10%' }]}>{guia.id}</Text>
                             <Text style={[styles.tableCell, { width: '30%' }]}>{guia.destinatario.nombre} {guia.destinatario.apellido}</Text>
                             <Text style={[styles.tableCell, { width: '10%' }]}>{guia.destinatario.documento}</Text>
-                            <Text style={[styles.tableCell, { width: '5%' }]}>{guia.peso} KG</Text>
-                            <Text style={[styles.tableCell, { width: '10%' }]}>{guia.pesoVolumetrico}</Text>
+                            <Text style={[styles.tableCell, { width: '7%' }]}>{guia.peso} KG</Text>
+                            <Text style={[styles.tableCell, { width: '8%' }]}>{guia.pesoVolumetrico}</Text>
                             <Text style={[styles.tableCell, { width: '10%' }]}>{guia.m3}</Text>
                             <Text style={[styles.tableCell, { width: '10%' }]}>{guia.ft3}</Text>
                             <Text style={[styles.tableCell, { width: '10%' }]}>{calcularFOB(guia.articulos)} USD </Text>
