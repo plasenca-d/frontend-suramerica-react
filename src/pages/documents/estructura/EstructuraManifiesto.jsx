@@ -79,6 +79,12 @@ export const EstructuraManifiesto = ({ manifiesto }) => {
         }, 0).toFixed(2); // Devolver el total con dos decimales
     };
 
+    const calcularPesoTotal = () => {
+        return manifiesto.guias.reduce((total, guia) => {
+            return total + guia.peso;
+        }, 0).toFixed(2); // Devolver el total con dos decimales
+    };
+
     return (
         <Document>
             <Page size={'A4'} orientation='landscape' style={styles.page}>
@@ -95,7 +101,7 @@ export const EstructuraManifiesto = ({ manifiesto }) => {
                 <View style={styles.row} mb={2}>
                     <Text style={styles.column}>Creado Por: {manifiesto.user.name}</Text>
                     <Text style={styles.column}>Fecha:  {formattedDate}</Text>
-                    <Text style={styles.column}>Peso Total</Text>
+                    <Text style={styles.column}>Peso Total: {calcularPesoTotal()} KG</Text>
                 </View>
 
                 <View style={styles.table}>
@@ -128,15 +134,15 @@ export const EstructuraManifiesto = ({ manifiesto }) => {
                 <View style={styles.row} mt={2}>
                     <View style={styles.signatureContainer}>
                         <View style={styles.signatureLine} />
-                        <Text style={styles.signatureText}>Firma Remitente</Text>
+                        <Text style={styles.signatureText}>Firma Recibe</Text>
                     </View>
                     <View style={styles.signatureContainer}>
                         <View style={styles.signatureLine} />
-                        <Text style={styles.signatureText}>Firma Remitente</Text>
+                        <Text style={styles.signatureText}>Firma Creado</Text>
                     </View>
                     <View style={styles.signatureContainer}>
                         <View style={styles.signatureLine} />
-                        <Text style={styles.signatureText}>Firma Remitente</Text>
+                        <Text style={styles.signatureText}>Firma Carga</Text>
                     </View>
                 </View>
             </Page>

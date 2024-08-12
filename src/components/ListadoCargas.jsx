@@ -1,4 +1,4 @@
-import { Badge, Box, Button, Card, CardBody, CardHeader, Flex, Heading, IconButton, Input, Table, TableContainer, Tbody, Td, Th, Thead, Tr } from '@chakra-ui/react'
+import { Badge, Box, Button, Card, CardBody, CardHeader, Flex, Heading, IconButton, Input, Table, TableContainer, Tbody, Td, Th, Thead, Tr, useToast } from '@chakra-ui/react'
 import { format } from 'date-fns'
 import React, { useState } from 'react'
 import { FaDollarSign, FaEye, FaFileExcel, FaFilePdf, FaRegEdit, FaTrash } from 'react-icons/fa'
@@ -10,7 +10,7 @@ import instanceWithToken from '../utils/instanceWithToken'
 import { saveAs } from 'file-saver';
 
 export const ListadoCargas = ({ cargas, onUpdate }) => {
-
+    const toast = useToast()
     let [currentPage, setCurrentPage] = useState(1)
     const itemsPerPage = 10
     const navigate = useNavigate()
@@ -51,6 +51,19 @@ export const ListadoCargas = ({ cargas, onUpdate }) => {
 
     const edit = (id) => {
         navigate("/cargas/editar/" + id)
+    }
+
+    const facturar = (id) => {
+        instanceWithToken.post('facturas', { cargaId: id }).then((result) => {
+            toast({
+                title: 'Facturas generadas.',
+                description: "Las facturas se han generado correctamente!",
+                status: 'success',
+                duration: 9000,
+                isClosable: true,
+            })
+        })
+        onUpdate()
     }
 
     return (
@@ -95,11 +108,12 @@ export const ListadoCargas = ({ cargas, onUpdate }) => {
                                         <Td textAlign={'center'}>{manifiesto.guias.length}</Td>
                                         <Td textAlign={'center'}>{format(new Date(manifiesto.createdAt), 'dd-MM-yyyy')}</Td>
                                         <Td>
-                                            
+
                                             <IconButton onClick={() => excel(manifiesto.id, 'full')} colorScheme='green' mr={3} icon={<FaFileExcel />} />
                                             <IconButton onClick={() => excelZoom(manifiesto.id, 'my3')} colorScheme='teal' mr={3} icon={<FaCircleUp />} />
-                                            <IconButton onClick={() => excelZoom(manifiesto.id, 'mn3')} colorScheme='orange' mr={3} icon={<FaCircleDown />} />
-                                            <IconButton onClick={() => pdf(manifiesto.id)} colorScheme='yellow' mr={3} icon={<FaDollarSign />} />
+                                            <IconButton onClick={() => excelZoom(manifiesto.id, 'mn3')} colorScheme='orange' mr={3} icon={<FaCircleDown />} /> 
+                                            {manifiesto.facturada && <IconButton onClick={() => excelZoom(manifiesto.id, 'mn3')} colorScheme='red' mr={3} icon={<FaEye />} /> }
+                                            {!manifiesto.facturada && <IconButton onClick={() => facturar(manifiesto.id)} colorScheme='yellow' mr={3} icon={<FaDollarSign />} />}
                                             {manifiesto.estado === 'CREACION' && <IconButton onClick={() => edit(manifiesto.id)} colorScheme='blue' mr={3} icon={<FaRegEdit />} />}
                                             {(!manifiesto.carga && Cookies.get("role") != 3) && <IconButton onClick={() => eliminar(manifiesto.id)} colorScheme='red' mr={3} icon={<FaTrash />} />}
                                         </Td>

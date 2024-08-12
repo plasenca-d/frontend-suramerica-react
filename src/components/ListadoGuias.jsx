@@ -83,7 +83,7 @@ export const ListadoGuias = ({ guias, updateGuias }) => {
 
                         <Flex flex='1' gap='4' alignItems='center' flexWrap='wrap'>
                             <Input value={search} w={'50%'} placeholder='Buscar Por Id de Guia, o Nombre del cliente' onChange={(event) => setSearch(event.target.value)} />
-                            {Cookies.get("role") == 3 && <Button leftIcon={<FiPlusCircle />} colorScheme='red'>Agregar Guia</Button>}
+                            {Cookies.get("role") == 3 && <Button onClick={neww} leftIcon={<FiPlusCircle />} colorScheme='red'>Agregar Guia</Button>}
                         </Flex>
 
                     </Flex>
