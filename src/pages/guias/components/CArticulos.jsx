@@ -36,8 +36,8 @@ export const CArticulos = ({ articulos, setArticulos }) => {
             <CardBody>
                 <SimpleGrid columns={4} spacing={5}>
                     <Input placeholder="Articulo" value={articulo} onChange={(event) => setArticulo(event.target.value)} />
-                    <Input placeholder="Precio" value={precio} onChange={(event) => setPrecio(event.target.value)} />
                     <Input placeholder="Cantidad" value={cantidad} onChange={(event) => setCantidad(event.target.value)} />
+                    <Input placeholder="Precio" value={precio} onChange={(event) => setPrecio(event.target.value)} />
                     <Button onClick={add} colorScheme='blue'>Agregar</Button>
                 </SimpleGrid>
 
