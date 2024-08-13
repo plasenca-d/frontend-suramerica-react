@@ -24,6 +24,7 @@ import { ManifiestoPdf } from '../pages/documents/ManifiestoPdf';
 import { PCargas } from '../pages/admin/PCargas';
 import { PEditCarga } from '../pages/cargas/PEditCarga';
 import { PCrearCarga } from '../pages/cargas/PCrearCarga';
+import { PFacturas } from '../pages/admin/PFacturas';
 
 export const MyRoutes = () => {
   return (
@@ -43,6 +44,7 @@ export const MyRoutes = () => {
             <Route path="admin/sucursales" element={<SucursalesPage />} />
             <Route path="admin/usuarios" element={<UsuariosPage />} />
             <Route path="admin/tasas" element={<TasasPage />} />
+            <Route path="admin/facturas" element={<PFacturas />} />
             <Route path="admin/empresa/configurar" element={<CofigPage />} />
             <Route path="/admin/paquetes" element={<PaquetesPage />} />
             <Route path="/admin/manifiestos" element={<PaquetesPage />} />

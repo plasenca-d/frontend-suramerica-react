@@ -48,7 +48,6 @@ export const MCrearDestinatario = ({ isOpen, onClose, setDestinatario, setLabel,
       return
     }
 
-
     const payload = {
       tipoDocumento,
       pais,
