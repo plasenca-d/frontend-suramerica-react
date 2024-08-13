@@ -9,18 +9,25 @@ import {
     SimpleGrid,
     useToast,
     Image,
+    InputGroup,
+    InputRightElement,
+    IconButton,
 } from '@chakra-ui/react'
 import { useState } from 'react'
 import instance from '../utils/instance'
 import Cookies from 'js-cookie'
 import { useNavigate } from 'react-router-dom'
 import logo from '../assets/logo.png';
+import { FaEye, FaEyeSlash } from 'react-icons/fa'
 
 export default function LoginPage() {
     const navigate = useNavigate()
+    let [show, setShow] = useState(false)
     const toast = useToast()
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+
+    const handleClick = () => setShow(!show)
 
     const login = () => {
         if (!email, !password) {
@@ -109,18 +116,25 @@ export default function LoginPage() {
                                     color: 'gray.500',
                                 }}
                             />
-                            <Input
-                                value={password}
-                                onChange={(event) => setPassword(event.target.value)}
-                                placeholder="Clave"
-                                bg={'gray.100'}
-                                border={0}
-                                color={'gray.500'}
-                                _placeholder={{
-                                    color: 'gray.500',
-                                }}
-                            />
+                            <InputGroup size='md'>
+                                <Input
+                                    pr='4.5rem'
+                                    type={show ? 'text' : 'password'}
+                                    placeholder='Clave'
+                                    bg={'gray.100'}
+                                    value={password}
+                                    onChange={(event) => setPassword(event.target.value)}
+                                    border={0}
+                                    color={'gray.500'}
+                                    _placeholder={{
+                                        color: 'gray.500',
+                                    }}
+                                />
+                                <InputRightElement >
+                                    <IconButton onClick={handleClick} aria-label='Search database' icon={show ? <FaEye /> : <FaEyeSlash />} />
 
+                                </InputRightElement>
+                            </InputGroup>
                         </Stack>
                         <Button
                             onClick={() => login()}
