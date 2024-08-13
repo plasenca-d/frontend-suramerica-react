@@ -53,12 +53,12 @@ export const MCrearCliente = ({ isOpen, onClose, setLabel, setClient }) => {
         const payload = {
             tipoDocumento,
             pais,
-            nombre,
-            apellido,
+            nombre: nombre.toUpperCase(),
+            apellido: apellido.toUpperCase(),
             documento,
-            ciudad,
-            estado,
-            correo,
+            ciudad: ciudad.toUpperCase(),
+            estado: estado.toUpperCase(),
+            correo: correo.toUpperCase(),
             telefono,
             empresa
         }
@@ -125,13 +125,13 @@ export const MCrearCliente = ({ isOpen, onClose, setLabel, setClient }) => {
                         <Input value={apellido} onChange={(event) => setApellido(event.target.value)} type='text' />
                     </Box>
                     <Box>
-                        <Text mb='8px'>Pais</Text>
+                        <Text mb='8px'>Nacionalidad</Text>
                         <Select
                             value={pais}
                             onChange={(event) => setPais(event.target.value)}
-                            placeholder='Pais Origen'>
+                            placeholder='Nacionalidad'>
                             {paises.map((pais, index) => (
-                                <option key={index} value={pais.id}>{pais.nombre}</option>
+                                <option key={index} value={pais.id}>{pais.nacionalidad}</option>
                             ))}
                         </Select>
                     </Box>
