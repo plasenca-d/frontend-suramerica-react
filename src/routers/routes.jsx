@@ -55,6 +55,7 @@ export const MyRoutes = () => {
             <Route path="/cargas/crear" element={<PCrearCarga />} />
             <Route path="/guias/generar" element={<NuevaGuia />} />
             <Route path="/manifiestos/generar" element={<PCrearManifiesto />} />
+            <Route path="/facturas/carga/:cargaId" element={<PFacturas />} />
 
 
 
