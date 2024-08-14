@@ -1,4 +1,4 @@
-import { Box, Button, Card, CardBody, CardHeader, Flex, Heading, IconButton, Input, Table, TableContainer, Tbody, Td, Text, Th, Thead, Tr, useDisclosure, useToast } from '@chakra-ui/react'
+import { Badge, Box, Button, Card, CardBody, CardHeader, Flex, Heading, IconButton, Input, Table, TableContainer, Tbody, Td, Text, Th, Thead, Tooltip, Tr, useDisclosure, useToast } from '@chakra-ui/react'
 import React, { useState } from 'react'
 import { FiPlusCircle } from 'react-icons/fi'
 import Cookies from 'js-cookie'
@@ -99,8 +99,9 @@ export const ListadoGuias = ({ guias, updateGuias }) => {
                                 <Tr>
                                     <Th>Guia</Th>
                                     <Th>Id Zoom</Th>
-                                    <Th>Cliente</Th>
                                     <Th>Destinatario</Th>
+                                    <Th>Manifiesto</Th>
+                                    <Th>Carga</Th>
                                     <Th></Th>
                                 </Tr>
                             </Thead>
@@ -109,8 +110,23 @@ export const ListadoGuias = ({ guias, updateGuias }) => {
                                     <Tr key={index}>
                                         <Td>{paquete.id}</Td>
                                         <Td>{paquete.guiaZoom}</Td>
-                                        <Td>{paquete.cliente.nombre} {paquete.cliente.apellido}</Td>
                                         <Td>{paquete.destinatario.nombre} {paquete.destinatario.apellido}</Td>
+                                        <Td>
+                                            {!paquete.manifiesto && <Badge colorScheme='red'>No</Badge>}
+                                            {paquete.manifiesto &&
+                                                <Tooltip label={paquete.manifiesto.id}>
+                                                    <Badge colorScheme='green'>Si</Badge>
+                                                </Tooltip>
+                                            }
+                                        </Td>
+                                        <Td>
+                                            {!paquete.carga && <Badge colorScheme='red'>No</Badge>}
+                                            {paquete.carga &&
+                                                <Tooltip label={paquete.carga.id}>
+                                                    <Badge colorScheme='green'>Si</Badge>
+                                                </Tooltip>
+                                            }
+                                        </Td>
                                         <Td>
                                             <IconButton onClick={() => ticket(paquete.id)} colorScheme='blue' mr={3} icon={<FaReceipt />} />
                                             <IconButton onClick={() => guia(paquete.id)} colorScheme='teal' mr={3} icon={<FaFileContract />} />

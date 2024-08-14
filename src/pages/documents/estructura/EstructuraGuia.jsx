@@ -230,6 +230,14 @@ export const EstructuraGuia = ({ guia }) => {
                             <Text style={[styles.tableCellLast, { flex: 2 }]}>{articulo.cantidad * articulo.monto}</Text>
                         </View>
                     ))}
+                    <View style={styles.row}>
+                            <Text style={[styles.tableCell, { flex: 6 }]}>
+                                
+                            </Text>
+                            <Text style={[styles.tableCellLast, { flex: 2 }]}></Text>
+                            <Text style={[styles.tableCellLast, { flex: 2 }]}>TOTAL</Text>
+                            <Text style={[styles.tableCellLast, { flex: 2 }]}>{totalMonto} USD</Text>
+                        </View>
 
                 </View>
 
