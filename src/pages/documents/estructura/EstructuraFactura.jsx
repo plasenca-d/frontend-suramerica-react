@@ -1,6 +1,6 @@
 import React from 'react';
-import { Document, Page, Text, View, StyleSheet, Image } from '@react-pdf/renderer';
-import { format, addDays } from 'date-fns';
+import { Document, Page, Text, View, StyleSheet } from '@react-pdf/renderer';
+import { format } from 'date-fns';
 
 // Define styles
 const styles = StyleSheet.create({
@@ -11,15 +11,42 @@ const styles = StyleSheet.create({
     paddingVertical: 20,
   },
   header: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'flex-start',
     marginBottom: 20,
   },
   companyInfo: {
     fontSize: 12,
     marginBottom: 10,
   },
-  invoiceInfo: {
-    fontSize: 12,
-    textAlign: 'right',
+  invoiceInfoContainer: {
+    width: '20%',
+    borderWidth: 1,
+    borderColor: '#000',
+    marginBottom: 10,
+  },
+  invoiceNumberContainer: {
+    flexDirection: 'column',
+    alignItems: 'center',
+    width: '100%',
+  },
+  invoiceNumberTop: {
+    backgroundColor: 'white',
+    width: '100%',
+    height: 10,
+  },
+  invoiceNumberMiddle: {
+    backgroundColor: 'black',
+    color: 'white',
+    width: '100%',
+    paddingVertical: 5,
+    textAlign: 'center',
+  },
+  invoiceNumberBottom: {
+    backgroundColor: 'white',
+    width: '100%',
+    height: 10,
   },
   title: {
     fontSize: 18,
@@ -36,6 +63,8 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: '#000',
     borderBottomStyle: 'solid',
+    backgroundColor: 'gray',
+    color: 'white',
     paddingBottom: 5,
   },
   tableRow: {
@@ -45,7 +74,7 @@ const styles = StyleSheet.create({
   tableCell: {
     fontSize: 12,
     flex: 1,
-    textAlign: 'center'
+    textAlign: 'center',
   },
   totalSection: {
     flexDirection: 'row',
@@ -79,14 +108,26 @@ export const EstructuraFactura = ({ factura }) => {
 
         {/* Header Section */}
         <View style={styles.header}>
-          <Text style={styles.companyInfo}>
-            SurAmericaCargo
-          </Text>
-          <Text style={styles.invoiceInfo}>
-            Factura #: {factura.id}{"\n"}
-            Fecha: {format(factura.createdAt, 'dd/MM/yyyy')}{"\n"}
-            {/* Fecha de Vencimiento: {format(dueDate, 'dd/MM/yyyy')} */}
-          </Text>
+          <View>
+            <Text style={styles.companyInfo}>
+              Sur America Cargo <br />
+              Lima - Peru
+            </Text>
+            {/* <Text style={styles.invoiceInfo}>
+              Fecha: {format(factura.createdAt, 'dd/MM/yyyy')}
+            </Text> */}
+          </View>
+
+          {/* Invoice Number Section */}
+          <View style={styles.invoiceInfoContainer}>
+            <View style={styles.invoiceNumberContainer}>
+              <View style={styles.invoiceNumberTop} />
+              <Text style={styles.invoiceNumberMiddle}>
+                Factura {factura.id}
+              </Text>
+              <View style={styles.invoiceNumberBottom} />
+            </View>
+          </View>
         </View>
 
         {/* Title */}
@@ -105,17 +146,25 @@ export const EstructuraFactura = ({ factura }) => {
           <View style={styles.tableHeader}>
             <Text style={styles.tableCell}>Guia</Text>
             <Text style={styles.tableCell}>Tipo de Guia</Text>
+            <Text style={styles.tableCell}>Cobro x</Text>
             <Text style={styles.tableCell}>Peso</Text>
             <Text style={styles.tableCell}>Monto Facturado</Text>
           </View>
-          {factura.guias.map((guia, index) => (
-            <View key={index} style={styles.tableRow}>
-              <Text style={styles.tableCell}>{guia.id}</Text>
-              <Text style={styles.tableCell}>{guia.tipoGuia}</Text>
-              <Text style={styles.tableCell}>{guia.peso} KG</Text>
-              <Text style={styles.tableCell}>{guia.montoFacturado}</Text>
-            </View>
-          ))}
+          {factura.guias.map((guia, index) => {
+            const pesoCalculado = guia.peso > guia.pesoVolumetrico ? guia.peso : guia.pesoVolumetrico;
+            const tipoCalculo = guia.peso > guia.pesoVolumetrico ? 'PESO' : 'VOLUMEN';
+
+            return (
+              <View key={index} style={styles.tableRow}>
+                <Text style={styles.tableCell}>{guia.id}</Text>
+                <Text style={styles.tableCell}>{guia.tipoGuia}</Text>
+                <Text style={styles.tableCell}>{tipoCalculo}</Text>
+                <Text style={styles.tableCell}>{pesoCalculado} KG</Text>
+                <Text style={styles.tableCell}>{guia.montoFacturado}</Text>
+              </View>
+            );
+          })}
+
         </View>
 
         {/* Total Section */}
@@ -129,10 +178,10 @@ export const EstructuraFactura = ({ factura }) => {
         {/* Footer Section */}
         <Text style={styles.footer}>
           Gracias por confiar en nosotros!{"\n"}
-          Desde la fecha de emision de una factura tienes un lapso no mayor a 3 dias para pagar la misma.
+          Desde la fecha de emisión de una factura tienes un lapso no mayor a 3 días para pagar la misma.
         </Text>
 
       </Page>
     </Document>
   );
-}
+};
