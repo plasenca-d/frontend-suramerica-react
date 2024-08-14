@@ -66,6 +66,10 @@ export const ListadoCargas = ({ cargas, onUpdate }) => {
         onUpdate()
     }
 
+    const neww = () => {
+        navigate("/cargas/crear")
+    }
+
     return (
         <>
             <Card mt={5}>
@@ -111,8 +115,8 @@ export const ListadoCargas = ({ cargas, onUpdate }) => {
 
                                             <IconButton onClick={() => excel(manifiesto.id, 'full')} colorScheme='green' mr={3} icon={<FaFileExcel />} />
                                             <IconButton onClick={() => excelZoom(manifiesto.id, 'my3')} colorScheme='teal' mr={3} icon={<FaCircleUp />} />
-                                            <IconButton onClick={() => excelZoom(manifiesto.id, 'mn3')} colorScheme='orange' mr={3} icon={<FaCircleDown />} /> 
-                                            {manifiesto.facturada && <IconButton onClick={() => excelZoom(manifiesto.id, 'mn3')} colorScheme='red' mr={3} icon={<FaEye />} /> }
+                                            <IconButton onClick={() => excelZoom(manifiesto.id, 'mn3')} colorScheme='orange' mr={3} icon={<FaCircleDown />} />
+                                            {manifiesto.facturada && <IconButton onClick={() => excelZoom(manifiesto.id, 'mn3')} colorScheme='red' mr={3} icon={<FaEye />} />}
                                             {!manifiesto.facturada && <IconButton onClick={() => facturar(manifiesto.id)} colorScheme='yellow' mr={3} icon={<FaDollarSign />} />}
                                             {manifiesto.estado === 'CREACION' && <IconButton onClick={() => edit(manifiesto.id)} colorScheme='blue' mr={3} icon={<FaRegEdit />} />}
                                             {(!manifiesto.carga && Cookies.get("role") != 3) && <IconButton onClick={() => eliminar(manifiesto.id)} colorScheme='red' mr={3} icon={<FaTrash />} />}

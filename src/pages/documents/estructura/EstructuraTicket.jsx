@@ -106,7 +106,7 @@ export const EstructuraTicket = ({ guia }) => {
           <Text style={styles.title}>DESTINATARIO</Text>
         </View>
         <View style={styles.section}>
-          <View style={styles.row}>
+          <View style={styles.col}>
             <Text style={styles.leftText}>Nombre</Text>
             <Text style={styles.rightText}>{guia.destinatario.nombre} {guia.destinatario.apellido}</Text>
           </View>
@@ -141,7 +141,7 @@ export const EstructuraTicket = ({ guia }) => {
                 <Text style={styles.leftText}>Ciudad</Text>
                 <Text style={styles.rightText}>{guia.destinatario ? guia.destinatario.ciudad : null}</Text>
               </View>
-              <View style={styles.row}>
+              <View style={styles.col}>
                 <Text style={styles.leftText}>Direccion</Text>
                 <Text style={styles.rightText}>{guia.destinatario ? guia.destinatario.direccion : null}</Text>
               </View>
