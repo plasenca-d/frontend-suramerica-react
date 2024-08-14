@@ -25,6 +25,7 @@ import { PCargas } from '../pages/admin/PCargas';
 import { PEditCarga } from '../pages/cargas/PEditCarga';
 import { PCrearCarga } from '../pages/cargas/PCrearCarga';
 import { PFacturas } from '../pages/admin/PFacturas';
+import { Factura } from '../pages/documents/Factura';
 
 export const MyRoutes = () => {
   return (
@@ -62,6 +63,7 @@ export const MyRoutes = () => {
             <Route path="/documents/ticket/:guiaId" element={<Ticket />} />
             <Route path="/documents/etiqueta/:guiaId" element={<Etiqueta />} />
             <Route path="/documents/guia/:guiaId" element={<Guia />} />
+            <Route path="/documents/factura/:facturaId" element={<Factura />} />
             <Route path="/documents/manifiestos/pdf/:manifiestoId" element={<ManifiestoPdf />} />
           </Route>
         </Route>

@@ -1,8 +1,17 @@
 import { Badge, Card, CardBody, CardHeader, Heading, IconButton, Table, TableContainer, Tbody, Td, Th, Thead, Tr } from '@chakra-ui/react'
 import React from 'react'
-import { FaFileArrowDown } from 'react-icons/fa6'
+import { FaCcApplePay, FaFileArrowDown } from 'react-icons/fa6'
+import Cookies from 'js-cookie'
+import { useNavigate } from 'react-router-dom'
 
 export const ListadoFacturas = ({ facturas, onUpdate }) => {
+
+  const navigate = useNavigate()
+
+  const verFactura = (id) => {
+    navigate("/documents/factura/" + id)
+  }
+
   return (
     <>
       <Card mt={5}>
@@ -28,11 +37,12 @@ export const ListadoFacturas = ({ facturas, onUpdate }) => {
                     <Td textAlign={'center'}>{factura.empresa.nombre}</Td>
                     <Td textAlign={'center'}>{factura.montoTotal} USD</Td>
                     <Td textAlign={'center'}>
-                        {factura.status && <Badge colorScheme='green'>PAGADA</Badge>}
-                        {!factura.status && <Badge colorScheme='red'>NO PAGADA</Badge>}
+                      {factura.status && <Badge colorScheme='green'>PAGADA</Badge>}
+                      {!factura.status && <Badge colorScheme='red'>NO PAGADA</Badge>}
                     </Td>
                     <Td>
-                      <IconButton colorScheme='blue' icon={<FaFileArrowDown />} />
+                      {(!factura.status && Cookies.get("role") == 1) && <IconButton mr={3} colorScheme='red' icon={<FaCcApplePay />} />}
+                      <IconButton colorScheme='blue' onClick={() => verFactura(factura.id)} icon={<FaFileArrowDown />} />
                     </Td>
                   </Tr>
                 ))}
