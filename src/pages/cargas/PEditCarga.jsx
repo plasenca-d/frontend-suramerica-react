@@ -74,9 +74,8 @@ export const PEditCarga = () => {
         duration: 9000,
         isClosable: true,
       })
+      navigate("/cargas")
     })
-
-    navigate("/cargas")
   }
 
   useEffect(() => {
