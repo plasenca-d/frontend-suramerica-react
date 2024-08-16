@@ -151,7 +151,7 @@ export const EstructuraFactura = ({ factura }) => {
 
             return (
               <View key={index} style={styles.tableRow}>
-                <Text style={styles.tableCell}>{guia.id}</Text>
+                <Text style={styles.tableCell}>{guia.sucursal.codigo}-{guia.id}</Text>
                 <Text style={styles.tableCell}>{guia.tipoGuia}</Text>
                 <Text style={styles.tableCell}>{tipoCalculo}</Text>
                 <Text style={styles.tableCell}>{pesoCalculado} KG</Text>
