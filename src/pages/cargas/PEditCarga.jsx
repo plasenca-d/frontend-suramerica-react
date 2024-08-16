@@ -128,7 +128,7 @@ export const PEditCarga = () => {
             <Input placeholder='Numero de Manifiesto' value={search2} onChange={(event) => setSearch2(event.target.value)} />
           </SimpleGrid>
 
-          <SimpleGrid columns={1} >
+          <SimpleGrid mt={3} columns={1} >
             <Button colorScheme='blue' onClick={cierre}>Cerrar Carga</Button>
           </SimpleGrid>
         </CardBody>

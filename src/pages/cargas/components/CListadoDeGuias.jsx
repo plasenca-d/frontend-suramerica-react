@@ -35,7 +35,7 @@ export const CListadoDeGuias = ({ guias, onUpdate }) => {
                         <Tbody>
                             {guias.map((guia, index) => (
                                 <Tr key={index}>
-                                    <Td>{guia.id}</Td>
+                                    <Td>{guia.sucursal.codigo}-{guia.id}</Td>
                                     <Td>{guia.destinatario.nombre} {guia.destinatario.apellido}</Td>
                                     <Td>
                                         {!guia.manifiesto && <Badge colorScheme='red'>No</Badge>}
