@@ -109,10 +109,8 @@ export const EstructuraFactura = ({ factura }) => {
         {/* Header Section */}
         <View style={styles.header}>
           <View>
-            <Text style={styles.companyInfo}>
-              Sur America Cargo <br />
-              Lima - Peru
-            </Text>
+            <Text style={styles.companyInfo}> Sur America Cargo </Text>
+            <Text style={styles.companyInfo}> Lima - Peru </Text>
             {/* <Text style={styles.invoiceInfo}>
               Fecha: {format(factura.createdAt, 'dd/MM/yyyy')}
             </Text> */}
@@ -175,7 +173,8 @@ export const EstructuraFactura = ({ factura }) => {
         {/* Footer Section */}
         <Text style={styles.footer}>
           Gracias por confiar en nosotros!{"\n"}
-          Desde la fecha de emisión de una factura tienes un lapso no mayor a 3 días para pagar la misma.
+          24 Horas habiles para la cancelacion del presente recibo!{"\n"}
+          La no cancelacion del mismo, incurrira en retrasos de entrega de su carga!
         </Text>
 
       </Page>
