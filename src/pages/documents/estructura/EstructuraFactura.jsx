@@ -123,19 +123,16 @@ export const EstructuraFactura = ({ factura }) => {
             <View style={styles.invoiceNumberContainer}>
               <View style={styles.invoiceNumberTop} />
               <Text style={styles.invoiceNumberMiddle}>
-                Factura {factura.id}
+                Recibo {factura.id}
               </Text>
               <View style={styles.invoiceNumberBottom} />
             </View>
           </View>
         </View>
 
-        {/* Title */}
-        <Text style={styles.title}>Factura</Text>
-
         {/* Bill To Section */}
         <View style={styles.section}>
-          <Text>Facturado a:</Text>
+          <Text>Recibo Emitido a:</Text>
           <Text>{factura.empresa.nombre}</Text>
           <Text>{factura.empresa.correo}</Text>
           <Text>{factura.empresa.telefono}</Text>
