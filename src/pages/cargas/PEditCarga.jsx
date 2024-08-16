@@ -1,6 +1,6 @@
 import { Card, CardHeader, Heading, SimpleGrid, Box, Text, CardBody, Input, useDisclosure, Button, useToast } from '@chakra-ui/react'
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import instanceWithToken from '../../utils/instanceWithToken'
 import {
   Modal,
@@ -16,6 +16,7 @@ import { CListadoDeGuias } from './components/CListadoDeGuias'
 export const PEditCarga = () => {
 
   const toast = useToast()
+  const navigate = useNavigate()
   let { cargaId } = useParams()
   let [search, setSearch] = useState("")
   let [search2, setSearch2] = useState("")
@@ -43,6 +44,7 @@ export const PEditCarga = () => {
       } else {
         onOpenNew()
       }
+      setSearch("")
     })
   }
 
@@ -65,8 +67,16 @@ export const PEditCarga = () => {
 
   const cierre = () => {
     instanceWithToken.patch('cargas/' + cargaId, { estado: 'Aduana origen' }).then((result) => {
-      
+      toast({
+        title: 'Exito',
+        description: 'Carga cerrada con exito!',
+        status: 'success',
+        duration: 9000,
+        isClosable: true,
+      })
     })
+
+    navigate("")
   }
 
   useEffect(() => {
