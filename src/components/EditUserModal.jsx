@@ -119,7 +119,7 @@ const EditUserModal = ({ isOpen, onClose, user, getUsuarios }) => {
                         value={role}
                         onChange={(event) => setRole(event.target.value)}
                     >
-                        <option value='1'>Super Admin</option>
+                        {Cookies.get("role") === 1 && <option value='1'>Super Admin</option>}
                         <option value='2'>Admin</option>
                         <option value='3'>Operario</option>
                     </Select>
