@@ -17,7 +17,7 @@ export const PCrearCarga = () => {
       fechaSalida: fecha,
       user: Cookies.get("id")
     }
-    if (!tipoCarga, !fecha) {
+    if (!tipoGuia, !fecha) {
       toast({
         title: 'Error',
         description: 'Debes selecccionar un tipo y una fecha',
