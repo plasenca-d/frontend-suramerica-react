@@ -1,0 +1,47 @@
+html,
+body {
+    height: 100%;
+    margin: 0;
+    overflow: auto;
+    /* Evita el scroll por defecto */
+}
+
+body {
+    /* background-color: #fdeef1; */
+    background-color: #000000;
+    /* Color de fondo de reserva */
+    background-image: url('../src/img/fondo.png');
+    background-size: cover;
+    /* Asegura que la imagen cubra todo el ancho y alto del viewport */
+    background-position: center;
+    /* Centra la imagen de fondo */
+    background-repeat: no-repeat;
+    /* Evita que la imagen se repita */
+}
+
+/* Media query para pantallas pequeñas */
+@media (max-width: 768px) {
+
+    html,
+    body {
+        overflow: auto;
+        /* Permite el scroll en pantallas pequeñas */
+    }
+}
+
+.container {
+    height: 100%;
+    margin: 0;
+    overflow: auto;
+    background-color: #000000;
+    background-image: url('../src/img/fondo.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+@media (max-width: 768px) {
+    .container {
+        overflow: auto;
+    }
+}
